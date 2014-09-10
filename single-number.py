@@ -1,8 +1,8 @@
-def singleNumber(A):
-    r = 0
-    for a in A:
-        r ^= a
-    return r
-
-A = [5,4,5,4,3]
-print singleNumber(A)
+class Solution:
+    # @param A, a list of integer
+    # @return an integer
+    def singleNumber(self, A):
+        r = 0
+        for a in A:
+            r ^= a
+        return r
