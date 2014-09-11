@@ -16,3 +16,23 @@ public:
         return 0;
     }
 };
+
+// 二分查找
+class Solution {
+public:
+    int searchInsert(int A[], int n, int target) {
+        int l = 0, r = n - 1;
+        int mid;
+        while (l <= r) {
+            mid = (l + r) / 2;
+            if (target == A[mid]) {
+                return mid;
+            } else if (target > A[mid]) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return l;
+    }
+};
