@@ -8,8 +8,7 @@
  * };
  */
 
-// 这个方法太帅了!!
-// 来自 https://oj.leetcode.com/discuss/21995/a-very-concise-solution
+// 方法 1
 class Solution {
 public:
     vector<int> postorderTraversal(TreeNode *root) {
@@ -19,6 +18,7 @@ public:
         if (root == nullptr) {
             return result;
         }
+
         s.push(root);
         
         TreeNode *p = nullptr;
@@ -34,5 +34,35 @@ public:
             }
         }
         return result;
+    }
+};
+
+// 方法 2
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode *root) {
+        TreeNode *p = root;
+        vector<int> result;
+        if (!p) {
+            return result;
+        }
+
+        TreeNode *top, *last = NULL;
+        stack<TreeNode *> q;
+        while (p || !q.empty()) {
+            if (p) {
+                q.push(p);
+                p = p->left;
+            } else {
+                top = q.top();
+                if (top->right == NULL || top->right == last) {
+                    q.pop();
+                    result.push_back(top->val);
+                    last = top;
+                } else {
+                    p = top->right;
+                }
+            }
+        }
     }
 };
